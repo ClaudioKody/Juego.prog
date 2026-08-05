@@ -67,4 +67,16 @@ class UserRepository:
         conn = self.db_connection.get_connection()
         if not conn:
             return
+        try:
+            cursor = conn.cursor()
+            cursor.execute("""
+            INSERT INTO historial_partidas (username, score, level_reached)
+            VALUES (%s, %s, %s)
+            """, (username, score, level_reached))
+            conn.commit()
+            print ("Partida guardada en el historial.")
+        except Exception as e:
+            print (f"Error al guardar el historial: {e}")
+            if conn:
+                conn.rollback ()
 
