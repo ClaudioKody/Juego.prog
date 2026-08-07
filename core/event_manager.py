@@ -1,3 +1,4 @@
+
 class EventManager:
     def __init__(self):
         self.listeners = {}
@@ -12,9 +13,10 @@ class EventManager:
             self.listeners[event_type].remove(listener)
 
     def handle_event(self, event, current_state):
-        if hasattr(current_state, "handle_event"):
+        # Los eventos pueden ser manejados por el estado actual o por listeners globales
+        if hasattr(current_state, 'handle_event'):
             current_state.handle_event(event)
-            
+
         if event.type in self.listeners:
             for listener in self.listeners[event.type]:
                 listener.handle_event(event)
