@@ -1,57 +1,27 @@
-# Retro Arcade Shooter - TP Programación II
-
-## Integrantes
-Priscila Toledano
-Tomas Naveda
-Claudio Perez
-Selene Quintero
-
-## Descripción del juego 
-Retro Arcade Shooter es un videojuego de disparos en 2D desarrollado en Python utilizando la librería Pygame. El objetivo del juego es sobrevivir a oleadas infinitas de enemigos destructivos, superando niveles de dificultad progresiva, acumulando puntos y evitando perder las tres vidas disponibles.
-
-## Historia
-En un futuro lejano, la galaxia ha sido invadida por flotas alienígenas hostiles (Abejitas, Platillos y Tanques mecánicos). A bordo de nuestra nave estelar de última generación, la misión es pilotar a través del espacio profundo, repeler el ataque enemigo y restaurar la paz estelar nivel tras nivel.
-
-## Tecnologías usadas
-* **Lenguaje:** Python 3.10+
-* **Librería Gráfica y de Audio:** Pygame
-* **Base de Datos:** MySQL (MySQL Workbench)
-* **Control de Versiones:** Git y GitHub
-
-## Instalación
-Para instalar el proyecto en tu computadora, hay que hacer estos pasos desde la terminal:
-1. Clonar el repositorio: 
-2. Crear y activar un entorno virtual: 
-   `python -m venv env`
-   `env\Scripts\activate`
-3. Instalar las dependencias necesarias ejecutando: `pip install pygame mysql-connector-python`
-
-## Ejecución
-Asegurate de tener tu servidor de base de datos encendido (XAMPP / MySQL) y ejecutá el archivo principal con el siguiente comando en la terminal:
-`python main.py`
-
-## Controles
-* **Movimiento Izquierda:** Flecha Izquierda o tecla A
-* **Movimiento Derecha:** Flecha Derecha o tecla D
-* **Disparar:** Tecla ESPACIO (Space)
-* **Pausar el juego:** Tecla ESC
-* **Navegar en menús:** Flechas arriba/abajo o teclas W / S y ENTER para seleccionar
-* **Reiniciar Nivel / Ir al Menú (en Pantalla de Game Over):** Teclas R o M
-
-## Capturas
-
-
-## Explicación de Patrones de Diseño
-El proyecto aplica estrictamente los 7 patrones de diseño solicitados en la arquitectura:
-1. **Singleton:** Utilizado en `DatabaseConnection` y `SoundManager` para garantizar una única instancia global de conexión a la base de datos y de gestión de audio, evitando recursos duplicados.
-2. **Factory Method:** Implementado mediante `EnemyFactory` y `BulletFactory` para la creación desacoplada de enemigos aleatorios (Abejitas, Platillos, Tanques) y proyectiles.
-3. **Observer:** Estructurado en `GameStats` para notificar automáticamente los cambios de puntaje, vidas y niveles hacia la interfaz de usuario (HUD) sin acoplamiento rígido.
-4. **State:** Columna vertebral del flujo de pantallas (`LoginState`, `MenuState`, `PlayingState`, `PausedState`, `GameOverState`) administradas limpiamente por el `StateManager`.
-5. **Strategy:** Empleado en las clases de movimiento (`SimpleMovement` y `ZigzagMovement`) para modularizar las distintas estrategias de desplazamiento de los enemigos.
-6. **Command:** Modelado en las clases de acciones (`MoveLeftCommand`, `MoveRightCommand`, `ShootCommand`) para encapsular las solicitudes de control del jugador.
-7. **Decorator:** Estructurado con `PlayerDecorator` y `DoubleShotDecorator` para permitir la extensión dinámica de funcionalidades sobre la nave (como el disparo múltiple) sin alterar su clase base.
-
-## Explicación de Base de Datos (MySQL)
-El sistema se conecta a una base de datos relacional en MySQL llamada `juego_prog2` que gestiona dos tablas principales:
-* **`usuarios`:** Almacena de forma única el `username` de cada jugador junto con su nivel actual (`current_level`) y su puntaje máximo (`max_score`). Permite que el sistema busque al usuario al iniciar sesión y recupere automáticamente su progreso guardado.
-* **`historial_partidas`:** Registra un historial detallado de cada partida jugada, guardando el nombre del usuario, el puntaje obtenido, el nivel alcanzado y la fecha exacta del evento vinculado mediante una llave foránea.
+Retro Arcade ShooterTrabajo Práctico Integrador — Programación IIUn videojuego arcade de naves 2D en Python con arquitectura orientada a objetos, patrones de diseño GoF y persistencia relacional.📋 Resumen del ProyectoRetro Arcade Shooter es una aplicación interactiva desarrollada sobre Pygame que combina mecánicas de disparo tradicionales en 2D con una arquitectura de software desacoplada y escalable.El sistema implementa persistencia de datos mediante MySQL para la gestión de usuarios, puntuaciones máximas e historial de partidas, garantizando una separación clara entre las capas de dominio, presentación y acceso a datos.👥 Equipo de DesarrolloNombre y ApellidoRol / ContribuciónPriscila ToledanoDesarrollo de Software & ArquitecturaTomas NavedaDesarrollo de Software & ArquitecturaClaudio PerezDesarrollo de Software & ArquitecturaSelene QuinteroDesarrollo de Software & Arquitectura🌌 Contexto y NarrativaEn un escenario futurista, la galaxia enfrenta la incursión masiva de flotas hostiles compuestas por tres facciones alienígenas (Abejitas, Platillos y Tanques Mecánicos). El jugador asume el control de una nave estelar de combate con la misión de defender el espacio profundo, sobrevivir a oleadas incrementales de enemigos y registrar su rendimiento en el sistema central.📐 Patrones de Diseño ImplementadosLa arquitectura del proyecto aplica rigurosamente 7 patrones de diseño de la pandilla de los cuatro (GoF) para favorecer la mantenibilidad y la cohesión del código:PatrónClases / MódulosRol Arquitectónico y ResponsabilidadSingletonDatabaseConnectionSoundManagerAsegura una única instancia compartida para la conexión a MySQL y el motor de audio, evitando redundancia de conexiones y uso ineficiente de memoria.Factory MethodEnemyFactoryBulletFactoryEncapsula la lógica de instanciación de entidades (enemigos y proyectiles), permitiendo añadir nuevos tipos de objetos sin alterar el código cliente.ObserverGameStats (Subject)HUD (Observer)Emite eventos reactivos ante cambios en el puntaje, vidas o nivel actual, actualizando la interfaz gráfica de forma desacoplada.StateStateManagerLoginState, MenuStatePlayingState, PausedStateGameOverStateModela el ciclo de vida de la aplicación mediante máquinas de estado finito, controlando la transición fluida entre pantallas.StrategySimpleMovementZigzagMovementDefine una familia de algoritmos de desplazamiento e interrumpe el acoplamiento rígido de comportamientos en las unidades enemigas.CommandMoveLeftCommandMoveRightCommandShootCommandEncapsula las entradas de control e interacción del jugador en objetos comando ejecutables.DecoratorPlayerDecoratorDoubleShotDecoratorExtiende las funcionalidades de la nave del jugador dinámicamente en tiempo de ejecución (ej. disparos dobles/mejorados) sin recurrir a herencia múltiple.🗄️ Esquema y Persistencia de Datos (MySQL)El sistema utiliza la base de datos relacional juego_prog2 administrada mediante MySQL Workbench:
+┌─────────────────────────┐         ┌─────────────────────────┐
+│        usuarios         │         │   historial_partidas    │
+├─────────────────────────┤         ├─────────────────────────┤
+│ id (PK)                 │1       *│ id (PK)                 │
+│ username (UNIQUE)       ├─────────┤ user_id (FK)            │
+│ current_level           │         │ score                   │
+│ max_score               │         │ level_reached           │
+└─────────────────────────┘         │ played_at               │
+                                    └─────────────────────────┘
+usuarios: Registra las credenciales y el estado persistente del jugador (current_level, max_score), facilitando la recuperación automática del progreso al autenticarse.historial_partidas: Guarda una auditoría cronológica de partidas finalizadas con el puntaje obtenido, nivel alcanzado y marca de tiempo (played_at).🛠️ Tecnologías y RequisitosLenguaje: Python 3.10 o superiorMotor Gráfico: Pygame / Pygame Community Edition (pygame-ce)Gestor de BD: MySQL Server 8.0+ / XAMPPLibrerías Clave: mysql-connector-python, python-dotenv⚙️ Instalación y ConfiguraciónClonar el repositorio:Bashgit clone https://github.com/usuario/Juego.prog.git
+cd Juego.prog
+Crear e inicializar el entorno virtual:PowerShellpython -m venv .venv
+.\.venv\Scripts\Activate.ps1
+Instalar dependencias del sistema:PowerShellpip install -r requirements.txt
+Variables de Entorno (.env):Crea un archivo .env en la raíz del proyecto con la configuración de tu motor MySQL:Fragmento de códigoDB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=tu_contraseña
+DB_NAME=juego_prog2
+DB_PORT=3306
+🚀 Modo de UsoAsegurate de iniciar el servicio MySQL y ejecuta el punto de entrada principal:PowerShellpython main.py
+🎮 Mapa de Controles      [ W / ↑ ]               [ Space ]                [ Esc ]
+      Navegar                 Disparar                  Pausa
+         │                        │                       │
+ [ A / ← ] [ S / ↓ ] [ D / → ]    │                 [ R ]   /   [ M ]
+  Mover Izq. / Mover Der.         │               Reiniciar / Menú Principal
+AcciónMapeo TecladoDesplazamiento LateralFlechas Izquierda / Derecha o Teclas A / DAcción de DisparoBarra EspaciadoraControl de MenúFlechas Arriba / Abajo o Teclas W / SConfirmaciónTecla EnterGestión de PausaTecla EscPantalla Game OverTecla R (Reintentar) / Tecla M (Volver al Menú)
