@@ -1,4 +1,5 @@
-import pygame 
+
+import pygame
 
 def load_image(path, scale=1):
     image = pygame.image.load(path).convert_alpha()

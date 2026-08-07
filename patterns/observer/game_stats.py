@@ -95,3 +95,4 @@ class GameStats(Subject):
                 f.write(str(self.high_score))
         except Exception as e:
             print(f"Error guardando high score: {e}")
+            

@@ -1,3 +1,4 @@
+
 from abc import ABC, abstractmethod
 
 class PlayerDecorator(ABC):
@@ -7,9 +8,11 @@ class PlayerDecorator(ABC):
     @abstractmethod
     def update(self):
         self._player.update()
+
     @abstractmethod
     def draw(self, screen):
         self._player.draw(screen)
+
     @abstractmethod
     def shoot(self):
         self._player.shoot()
@@ -19,8 +22,10 @@ class DoubleShotDecorator(PlayerDecorator):
         super().__init__(player)
 
     def shoot(self):
+        # Lógica para doble disparo
         print("Doble disparo!")
-        self._player.shoot()
+        self._player.shoot() # Disparo original
+        # Añadir un segundo disparo
 
     def update(self):
         self._player.update()

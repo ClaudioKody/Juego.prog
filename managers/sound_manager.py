@@ -15,7 +15,7 @@ class SoundManagerFacade:
         try:
             if not pygame.mixer.get_init():
                 pygame.mixer.init(frequency=22050, size=-16, channels=1, buffer=512)
-           
+            
             # Sonido de Láser
             duration_l = 0.1
             samples_l = int(22050 * duration_l)
@@ -52,3 +52,4 @@ class SoundManagerFacade:
 
     def set_volume(self, name, volume):
         self._sound_manager.set_volume(name, volume)
+        

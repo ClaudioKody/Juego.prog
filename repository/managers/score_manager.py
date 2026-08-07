@@ -1,3 +1,4 @@
+
 from repository.database.score_repository import ScoreRepository
 
 class ScoreManager:
@@ -8,4 +9,4 @@ class ScoreManager:
         self.score_repository.save_score(player_name, score)
 
     def get_top_scores(self, limit=10):
-        return self.score_repository.get_high_scores(limit) 
+        return self.score_repository.get_high_scores(limit)

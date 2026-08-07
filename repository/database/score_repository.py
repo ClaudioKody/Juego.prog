@@ -1,3 +1,4 @@
+
 from repository.database.connection import MySQLConnection
 
 class ScoreRepository:
@@ -9,7 +10,7 @@ class ScoreRepository:
         if conn:
             try:
                 cursor = conn.cursor()
-                query = "INSERT INTO scores (player_name, score) VALUES(%s, %s)"
+                query = "INSERT INTO scores (player_name, score) VALUES (%s, %s)"
                 cursor.execute(query, (player_name, score))
                 conn.commit()
                 print(f"Puntaje {score} de {player_name} guardado con éxito.")
@@ -27,4 +28,3 @@ class ScoreRepository:
             except Exception as e:
                 print(f"Error al obtener puntajes altos: {e}")
         return []
-
