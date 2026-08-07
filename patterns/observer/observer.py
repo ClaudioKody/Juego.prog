@@ -1,9 +1,10 @@
+
 from abc import ABC, abstractmethod
 
 class Subject(ABC):
     def __init__(self):
         self._observers = []
-        
+
     def attach(self, observer):
         if observer not in self._observers:
             self._observers.append(observer)
