@@ -31,6 +31,7 @@ class MySQLConnection(DatabaseConnection):
             self.connection = mysql.connector.connect(
                 host=host,
                 user=user,
+                port=port,
                 password=password,
                 database=database,
                 connection_timeout=5 
