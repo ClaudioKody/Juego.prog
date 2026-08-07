@@ -24,7 +24,7 @@ class MySQLConnection(DatabaseConnection):
         try:
             host = os.getenv("DB_HOST", "localhost")
             user = os.getenv("DB_USER", "root")
-            port = os.getenv("DB_PORT", "3307")
+            port = int(os.getenv("DB_PORT", "3307"))
             password = os.getenv("DB_PASSWORD", "")
             database = os.getenv("DB_NAME", "juego_programacion2")
             
