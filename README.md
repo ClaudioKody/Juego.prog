@@ -39,8 +39,11 @@ Asegurate de tener tu servidor de base de datos encendido (XAMPP / MySQL) y ejec
 * **Reiniciar Nivel / Ir al Menú (en Pantalla de Game Over):** Teclas R o M
 
 ## Capturas
-
-
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
 ## Explicación de Patrones de Diseño
 El proyecto aplica estrictamente los 7 patrones de diseño solicitados en la arquitectura:
 1. **Singleton:** Utilizado en `DatabaseConnection` y `SoundManager` para garantizar una única instancia global de conexión a la base de datos y de gestión de audio, evitando recursos duplicados.
@@ -52,6 +55,6 @@ El proyecto aplica estrictamente los 7 patrones de diseño solicitados en la arq
 7. **Decorator:** Estructurado con `PlayerDecorator` y `DoubleShotDecorator` para permitir la extensión dinámica de funcionalidades sobre la nave (como el disparo múltiple) sin alterar su clase base.
 
 ## Explicación de Base de Datos (MySQL)
-El sistema se conecta a una base de datos relacional en MySQL llamada `juego_prog2` que gestiona dos tablas principales:
+El sistema se conecta a una base de datos relacional en MySQL llamada `juego_programacion2` que gestiona dos tablas principales:
 * **`usuarios`:** Almacena de forma única el `username` de cada jugador junto con su nivel actual (`current_level`) y su puntaje máximo (`max_score`). Permite que el sistema busque al usuario al iniciar sesión y recupere automáticamente su progreso guardado.
 * **`historial_partidas`:** Registra un historial detallado de cada partida jugada, guardando el nombre del usuario, el puntaje obtenido, el nivel alcanzado y la fecha exacta del evento vinculado mediante una llave foránea.
