@@ -34,7 +34,8 @@ class MySQLConnection(DatabaseConnection):
                 password=password,
                 database=database,
                 port=port,
-                connection_timeout=5 
+                connection_timeout=5,
+                use_pure=True
             )
             if self.connection.is_connected():
                 print("Conexión a MySQL establecida con éxito mediante .env.")
