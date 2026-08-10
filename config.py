@@ -20,7 +20,7 @@ SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption(CAPTION)
 CLOCK = pygame.time.Clock()
 
-# --- Agregá estas líneas abajo del todo para que coincidan con game.py ---
+
 screen_width = SCREEN_WIDTH
 screen_height = SCREEN_HEIGHT
 fps = FPS

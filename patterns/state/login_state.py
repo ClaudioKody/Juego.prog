@@ -87,9 +87,7 @@ class LoginState(GameState):
 
             user_repo = UserRepository()
 
-            # ==========================================
-            # REGISTRARSE
-            # ==========================================
+
 
             if self.modo == "REGISTRAR":
 
@@ -109,28 +107,18 @@ class LoginState(GameState):
 
                 self.game.state_manager.change_state("menu")
 
-            # ==========================================
-            # INICIAR SESIÓN
-            # ==========================================
+
 
             elif self.modo == "INICIAR":
 
                 print("LOGIN: buscando usuario...")
 
-                # IMPORTANTE:
-                # Para iniciar sesión NO usamos
-                # obtener_o_crear_usuario().
-                #
-                # Usamos buscar_usuario(), que solamente
-                # busca y NO crea usuarios.
+
 
                 resultado = user_repo.buscar_usuario(
                     self.username
                 )
 
-                # ==========================================
-                # USUARIO NO EXISTE
-                # ==========================================
 
                 if resultado is None:
 
@@ -146,9 +134,7 @@ class LoginState(GameState):
 
                     return
 
-                # ==========================================
-                # USUARIO EXISTE
-                # ==========================================
+
 
                 level, max_score = resultado
 
@@ -177,9 +163,7 @@ class LoginState(GameState):
 
         screen.fill(self.color_bg)
 
-        # ==========================================
-        # MENU PRINCIPAL
-        # ==========================================
+
 
         if self.modo == "MENU":
 
@@ -198,7 +182,7 @@ class LoginState(GameState):
                 )
             )
 
-            # Botón Registrarse
+            
             pygame.draw.rect(
                 screen,
                 self.color_btn,
@@ -220,7 +204,7 @@ class LoginState(GameState):
                 )
             )
 
-            # Botón Iniciar Sesión
+            
             pygame.draw.rect(
                 screen,
                 self.color_btn,
@@ -242,9 +226,7 @@ class LoginState(GameState):
                 )
             )
 
-        # ==========================================
-        # REGISTRO / LOGIN
-        # ==========================================
+
 
         else:
 
@@ -283,7 +265,7 @@ class LoginState(GameState):
                 )
             )
 
-            # Caja de texto
+            
             box_rect = pygame.Rect(
                 250,
                 240,
@@ -320,7 +302,7 @@ class LoginState(GameState):
                 )
             )
 
-            # Mensaje de error
+            
             if self.mensaje_error:
 
                 err_surface = self.font_small.render(
@@ -338,7 +320,7 @@ class LoginState(GameState):
                     )
                 )
 
-            # Botón volver
+            
             pygame.draw.rect(
                 screen,
                 (100, 60, 60),

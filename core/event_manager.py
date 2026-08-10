@@ -13,7 +13,7 @@ class EventManager:
             self.listeners[event_type].remove(listener)
 
     def handle_event(self, event, current_state):
-        # Los eventos pueden ser manejados por el estado actual o por listeners globales
+        
         if hasattr(current_state, 'handle_event'):
             current_state.handle_event(event)
 

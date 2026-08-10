@@ -28,19 +28,19 @@ class PlayingState(GameState):
         self.showing_level_cleared = False
         self.level_cleared_timer = 0
         
-        # Guardamos el nivel actual para poder reiniciar en él si se pierde
+        
         self.saved_level = 1
 
     def enter(self):
         print("Entering Playing State")
-        # Si venimos de Game Over con nivel guardado, lo restauramos
+        
         if hasattr(self.game, 'retry_level') and self.game.retry_level:
             self.game_stats.level = self.game.retry_level
             self.game.retry_level = None
         else:
             self.game_stats.reset()
             
-        self.player.lives = 3  # Aseguramos 3 vidas al entrar/reiniciar
+        self.player.lives = 3  
         self.game_stats.lives = 3
         self.apply_level_difficulty()
 
@@ -50,12 +50,12 @@ class PlayingState(GameState):
 
     def apply_level_difficulty(self):
         """Ajusta la frecuencia de los enemigos de forma progresiva según el nivel."""
-        # Cuanto mayor sea el nivel, menor el tiempo de espera (más enemigos caen)
+        
         spawn_time = max(300, 1500 - (self.game_stats.level - 1) * 200)
         pygame.time.set_timer(ENEMY_SPAWN_EVENT, spawn_time)
 
     def update(self):
-        # Transición al ganar un nivel
+        
         if self.showing_level_cleared:
             if pygame.time.get_ticks() - self.level_cleared_timer > 2000:
                 self.showing_level_cleared = False
@@ -67,7 +67,7 @@ class PlayingState(GameState):
 
         self.all_sprites.update()
 
-        # Disparos enemigos (más agresivos según el nivel)
+        
         for enemy in self.enemies:
             shoot_chance = 0.006 + (self.game_stats.level * 0.003)
             if random.random() < shoot_chance:
@@ -75,7 +75,7 @@ class PlayingState(GameState):
                 self.enemy_bullets.add(bullet)
                 self.all_sprites.add(bullet)
 
-        # Colisiones: Balas del jugador destruyen enemigos al instante (1 solo tiro)
+        
         hits = pygame.sprite.groupcollide(self.enemies, self.player_bullets, True, True)
         for hit in hits:
             self.sound_manager.play_sound('explosion')
@@ -86,23 +86,25 @@ class PlayingState(GameState):
                 self.showing_level_cleared = True
                 self.level_cleared_timer = pygame.time.get_ticks()
 
-        # Colisiones: Balas enemigas impactan al jugador
+        
         hits = pygame.sprite.spritecollide(self.player, self.enemy_bullets, True)
         for hit in hits:
             self.sound_manager.play_sound('explosion')
             if self.player.take_damage():
-                # Guardamos el nivel actual antes de ir al Game Over
+                
                 self.game.retry_level = self.game_stats.level
+                self.game.last_score = self.game_stats.score
                 self.game.state_manager.change_state("game_over")
             self.game_stats.lives = self.player.lives
 
-        # Colisiones: Enemigos chocan contra el jugador
+        
         hits = pygame.sprite.spritecollide(self.player, self.enemies, True)
         for hit in hits:
             self.sound_manager.play_sound('explosion')
             if self.player.take_damage():
-                # Guardamos el nivel actual antes de ir al Game Over
+                
                 self.game.retry_level = self.game_stats.level
+                self.game.last_score = self.game_stats.score
                 self.game.state_manager.change_state("game_over")
             self.game_stats.lives = self.player.lives
 
@@ -110,7 +112,7 @@ class PlayingState(GameState):
         screen.fill(BLACK)
         self.all_sprites.draw(screen)
 
-        # HUD superior
+        
         font = pygame.font.Font(None, 32)
         score_text = font.render(f"Score: {self.game_stats.score}", True, (255, 255, 255))
         lives_text = font.render(f"Lives: {self.player.lives}", True, (255, 255, 255))
@@ -123,7 +125,7 @@ class PlayingState(GameState):
         screen.blit(kills_text, (SCREEN_WIDTH // 2 - kills_text.get_width() // 2, 10))
         screen.blit(lives_text, (SCREEN_WIDTH - lives_text.get_width() - 10, 10))
 
-        # Cartel de Nivel Completado
+        
         if self.showing_level_cleared:
             font_big = pygame.font.Font(None, 52)
             msg = font_big.render(f"¡NIVEL {self.game_stats.level - 1} COMPLETADO!", True, (255, 255, 0))

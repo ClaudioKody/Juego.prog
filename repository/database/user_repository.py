@@ -22,7 +22,7 @@ class UserRepository:
         try:
             cursor = conn.cursor()
 
-            # Verificamos si ya existe el usuario
+            
             cursor.execute(
                 "SELECT current_level, max_score FROM usuarios WHERE username = %s",
                 (username,)
@@ -38,14 +38,14 @@ class UserRepository:
                     f"Nivel actual: {level}"
                 )
 
-                # Manejamos posibles valores NULL
+                
                 lvl = level if level is not None else 1
                 score = max_score if max_score is not None else 0
 
                 return lvl, score
 
             else:
-                # Si no existe, lo registramos
+                
                 cursor.execute(
                     """
                     INSERT INTO usuarios

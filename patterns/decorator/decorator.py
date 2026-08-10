@@ -22,10 +22,10 @@ class DoubleShotDecorator(PlayerDecorator):
         super().__init__(player)
 
     def shoot(self):
-        # Lógica para doble disparo
+        
         print("Doble disparo!")
-        self._player.shoot() # Disparo original
-        # Añadir un segundo disparo
+        self._player.shoot() 
+        
 
     def update(self):
         self._player.update()

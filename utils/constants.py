@@ -14,5 +14,5 @@ ENEMY_WIDTH = 40
 ENEMY_HEIGHT = 40
 ENEMY_SPEED = 2
 
-# Eventos personalizados
+
 ENEMY_SPAWN_EVENT = pygame.USEREVENT + 1

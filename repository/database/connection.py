@@ -27,12 +27,7 @@ class MySQLConnection(DatabaseConnection):
             port = int(os.getenv("DB_PORT", "3307"))
             password = os.getenv("DB_PASSWORD", "")
             database = os.getenv("DB_NAME", "juego_programacion2")
-<<<<<<< HEAD
             
-=======
-            port = int(os.getenv("DB_PORT", 3306))
-
->>>>>>> 09740fbf089694e161534f17a284f03182452729
             self.connection = mysql.connector.connect(
                 host=host,
                 user=user,

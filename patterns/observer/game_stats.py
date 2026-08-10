@@ -7,9 +7,9 @@ class GameStats(Subject):
         self._score = 0
         self._lives = 3
         self._level = 1
-        # Sin límite de nivel para que sea infinito
+        
         self._enemies_killed = 0
-        self._enemies_target = 10  # Nivel 1 arranca pidiendo 10 bajas
+        self._enemies_target = 10  
         self.high_score_file = "highscore.txt"
         self.high_score = self.load_high_score()
 
@@ -65,11 +65,11 @@ class GameStats(Subject):
         """Pasa de nivel infinitamente incrementando la dificultad y la meta."""
         self._level += 1
         self._enemies_killed = 0
-        self._enemies_target = 10 + (self._level - 1) * 5  # Niveles cada vez más largos
+        self._enemies_target = 10 + (self._level - 1) * 5  
         self.notify(score=self._score, lives=self._lives, level=self._level)
 
     def is_game_won(self):
-        # Al ser infinito, ya no hay una victoria por fin de niveles
+        
         return False
 
     def reset(self):

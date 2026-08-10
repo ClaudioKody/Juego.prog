@@ -10,10 +10,10 @@ class DatabaseConnection:
 
     def __init__(self):
         if not self.initialized:
-            # Aquí se inicializaría la conexión a la base de datos
-            # Por ahora, es solo un placeholder
+            
+            
             print("DatabaseConnection: Inicializando conexión a la base de datos...")
-            self.connection = None # Placeholder para la conexión real
+            self.connection = None 
             self.initialized = True
 
     def get_connection(self):

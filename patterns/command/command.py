@@ -16,7 +16,7 @@ class SoundManagerFacade:
             if not pygame.mixer.get_init():
                 pygame.mixer.init(frequency=22050, size=-16, channels=1, buffer=512)
             
-            # Sonido de Láser
+            
             duration_l = 0.1
             samples_l = int(22050 * duration_l)
             buf_l = array.array('h')
@@ -25,7 +25,7 @@ class SoundManagerFacade:
                 buf_l.append(int(16000 * math.sin(2 * math.pi * freq * (i / 22050))))
             self.sounds['laser'] = pygame.mixer.Sound(buffer=buf_l)
 
-            # Sonido de Explosión
+            
             duration_e = 0.2
             samples_e = int(22050 * duration_e)
             buf_e = array.array('h')
@@ -41,7 +41,7 @@ class SoundManagerFacade:
         if name in self.sounds:
             self.sounds[name].play(loops=loops)
         else:
-            # Fallback al singleton tradicional si se cargó un archivo externo
+            
             self._sound_manager.play_sound(name, loops)
 
     def load_sound(self, name, path):

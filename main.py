@@ -9,14 +9,14 @@ from patterns.state.game_over_state import GameOverState
 def main():
     game = Game()
 
-    # Registrar estados del juego
+    
     game.state_manager.add_state("login", LoginState(game))
     game.state_manager.add_state("menu", MenuState(game))
     game.state_manager.add_state("playing", PlayingState(game))
     game.state_manager.add_state("paused", PausedState(game))
     game.state_manager.add_state("game_over", GameOverState(game))
 
-    # Establecer el estado inicial
+    
     game.state_manager.change_state("login")
 
     game.run()
