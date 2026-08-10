@@ -34,7 +34,6 @@ class MySQLConnection(DatabaseConnection):
                 port=port,
                 password=password,
                 database=database,
-                port=port,
                 connection_timeout=5,
                 use_pure=True
             )
